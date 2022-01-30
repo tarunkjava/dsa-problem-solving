@@ -21,6 +21,7 @@ public class AlexSolveProblem {
         return count+1;
     }
 
+    //count no of 1s in binary repersenataion
     public static int solveWithBinary(int A) {
         int count=0;
         int no = A;
