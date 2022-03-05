@@ -3,7 +3,9 @@ package ds.arrays.bitmanipulation;
 public class MaxOnes {
     public static void main(String[] args) {
         String s = "111011101";
-
+        int res = -40%7;
+        System.out.println(res);
+        System.out.println(-40%7);
         System.out.println(maximum_one(s, s.length()));
     }
 
