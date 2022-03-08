@@ -37,6 +37,8 @@ public class Traversal {
 
         res = postorderTraversalStack(root);
         System.out.println("Post With stack:" + res);
+        res = postorderTraversalSingleStack(root);
+        System.out.println("Post With Single stack:" + res);
     }
 
     private static void printPreOrder(TreeNode root) {
@@ -104,23 +106,48 @@ public class Traversal {
         return res;
     }
 
-    public static ArrayList<Integer> postorderTraversalStack(TreeNode A) {
+    public static ArrayList<Integer> postorderTraversalSingleStack(TreeNode A) {
         TreeNode current;
         ArrayList<Integer> res = new ArrayList<>();
+        ArrayList<Integer> result = new ArrayList<>();
         Stack<TreeNode> stack = new Stack<>();
         current = A;
         stack.push(A);
 
         while (!stack.isEmpty()) {
-            current = stack.peek();
-            if(current.right!=null)
-                stack.push(current.right);
+            current = stack.pop();
+            res.add(current.val);
+
             if(current.left!=null)
                 stack.push(current.left);
+            if(current.right!=null)
+                stack.push(current.right);
+        }
 
-            if(current.right==null && current.left==null) {
-                res.add(current.val);
-            }
+        for(int i=res.size()-1; i>=0; i--){
+            result.add(res.get(i));
+        }
+
+        return result;
+    }
+
+    public static ArrayList<Integer> postorderTraversalStack(TreeNode A) {
+        ArrayList<Integer> res = new ArrayList<>();
+        Stack<TreeNode> stack = new Stack<>();
+        Stack<TreeNode> result = new Stack<>();
+        stack.push(A);
+
+        while (!stack.isEmpty()) {
+            TreeNode elem = stack.pop();
+            result.push(elem);
+            if (elem.left != null)
+                stack.push(elem.left);
+            if (elem.right!=null)
+                stack.push(elem.right);
+        }
+
+        while(!result.isEmpty()){
+            res.add(result.pop().val);
         }
 
         return res;
