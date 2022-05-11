@@ -39,6 +39,14 @@ public class Traversal {
         System.out.println("Post With stack:" + res);
         res = postorderTraversalSingleStack(root);
         System.out.println("Post With Single stack:" + res);
+        System.out.println("Height:" + height(root));
+    }
+
+    public static int height(TreeNode A) {
+        if (A==null)
+            return 0;
+        else
+            return Math.max(height(A.left), height(A.right))+1;
     }
 
     private static void printPreOrder(TreeNode root) {

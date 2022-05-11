@@ -3,7 +3,7 @@ package ds.arrays;
 public class MaximumSubArray {
 
     public static void main(String[] args) {
-        int arr [] = {-2,1,-3,4,-1,2,1,-5,4};
+        int arr [] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
         int arr2 [] = {1,2,3};
         int ans = maxSubArray(arr);
         System.out.println(ans);
@@ -54,14 +54,28 @@ public class MaximumSubArray {
 
     //O(N)
     public static int maxSubArrayBest(int[] a) {
-        int maxSum = a[0];
-        int currentSum = a[0];
+        int maxSum = Integer.MIN_VALUE;
+        int currentSum = 0;
         int n = a.length;
+        int s=0,e=0,gs=0,ge=0;
 
-        for(int i=1; i<n; i++){
-            currentSum = Math.max(currentSum+a[i],a[i]);
-            maxSum = Math.max(currentSum,maxSum);
+        for(int i=0; i<n; i++){
+            currentSum += a[i];
+            e=i;
+
+            if(currentSum>maxSum){
+                gs=s;
+                ge=e;
+                maxSum = currentSum;
+            }
+
+            if (currentSum<0){
+                currentSum = 0;
+                s=i+1;
+                e=i+1;
+            }
         }
+        System.out.println("SI:" + gs + " ,EI:" + ge);
 
         return maxSum;
     }

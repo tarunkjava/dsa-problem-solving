@@ -1,5 +1,7 @@
 package ds.arrays;
 
+import java.util.ArrayList;
+
 public class TrappingRainWater {
 
     public static void main(String[] args) {
@@ -9,6 +11,10 @@ public class TrappingRainWater {
     }
 
     public static int trap(int[] height) {
+        ArrayList<ArrayList<Integer>> list ;
+        ArrayList<Integer> r = null;
+        int x = r.get(0)+1;
+
 
         int n = height.length;
         int[] lm = new int[n];
